@@ -37,7 +37,7 @@ public class Caneta {
 		if(this.tampada == false && this.carga >= 7) {
 			Random random = new Random();
 			int int_random = random.nextInt(5);			
-			switch(int_random){
+				switch(int_random){
 				case 0:
 					msg="";
 					msg += "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n";
