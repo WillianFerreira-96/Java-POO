@@ -1,4 +1,4 @@
-package revisao01;
+package revisao02;
 import javax.swing.*;
 
 public class Main {
