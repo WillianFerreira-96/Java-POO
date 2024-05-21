@@ -5,13 +5,13 @@ import java.util.Random;
 
 public class Caneta {
 	//Atributos
-	int  carga = 100;
+	int carga = 100;
 	boolean tampada = true;
 	
 	//Metodos	
 	void escrever() {
 		String msg = "";
-		if(tampada == false && carga >= 3) {
+		if(this.tampada == false && this.carga >= 3) {
 			msg += "888    888          888 888               888       888                  888      888 888 \n"; 
 			msg += "888    888          888 888               888   o   888                  888      888 888 \n";
 			msg += "888    888          888 888               888  d8b  888                  888      888 888 \n";
@@ -21,20 +21,20 @@ public class Caneta {
 			msg += "888    888 Y8b.     888 888 Y88..88P      8888P   Y8888 Y88..88P 888     888 Y88b 888  '  \n";
 			msg += "888    888  'Y8888  888 888  'Y88P'       888P     Y888  'Y88P'  888     888  'Y88888 888 \n";
 			System.out.println(msg);
-			carga-= 3;
-			menu();
-		}else if(tampada == true){
+			this.carga-= 3;
+			this.menu();
+		}else if(this.tampada == true){
 			JOptionPane.showMessageDialog(null, "A Caneta esta Tampada!\n Por favor destampe a caneta!");
-			menu();
-		}else if(carga < 3) {
-			JOptionPane.showMessageDialog(null, "A Caneta esta com " + carga + "% de Tinta!\n Voce precisa de 3% para escrever.");
-			menu();
+			this.menu();
+		}else if(this.carga < 3) {
+			JOptionPane.showMessageDialog(null, "A Caneta esta com " + this.carga + "% de Tinta!\n Voce precisa de 3% para escrever.");
+			this.menu();
 		}		
 	}
 	
 	void desenhar() {
 		String msg = "";
-		if(tampada == false && carga >= 7) {
+		if(this.tampada == false && this.carga >= 7) {
 			Random random = new Random();
 			int int_random = random.nextInt(5);			
 			switch(int_random){
@@ -44,8 +44,8 @@ public class Caneta {
 					msg += "░░░░░░░░░░▀█▄▀▄▀██████░▀█▄▀▄▀████▀\n";
 					msg += "░░░░░░░░░░░░▀█▄█▄███▀░░░▀██▄█▄█▀\n";
 					System.out.println(msg);
-					carga-= 7;
-					menu();
+					this.carga-= 7;
+					this.menu();
 					break;
 				case 1:
 					msg="";
@@ -55,8 +55,8 @@ public class Caneta {
 					msg += "█░░░▀░░░▄▄▄▄▄░░██░▀▀░█\n";
 					msg += "─▀▄▄▄▄▄▀─────▀▄▄▄▄▄▄▀\n";
 					System.out.println(msg);
-					carga-= 7;
-					menu();
+					this.carga-= 7;
+					this.menu();
 					break;
 				case 2:
 					msg="";
@@ -66,8 +66,8 @@ public class Caneta {
 					msg += "▀▄▀▀█▀▀████─▀▄──▄▀\n";
 					msg += "──▀▀──────────▀▀\n";
 					System.out.println(msg);
-					carga-= 7;
-					menu();
+					this.carga-= 7;
+					this.menu();
 					break;
 				case 3:
 					msg = "";
@@ -77,8 +77,8 @@ public class Caneta {
 					msg += "█░░░░░░▄▄░░█░░░░░░▀░▀\n";
 					msg += "░▀▄▄▄▄▀░░▀▀\n";
 					System.out.println(msg);
-					carga-= 7;
-					menu();
+					this.carga-= 7;
+					this.menu();
 					break;
 				case 4: 
 					msg = "";
@@ -88,38 +88,38 @@ public class Caneta {
 					msg += "─▒▒▒▒▒▒▒──█████▄──────\n";
 					msg += "─▒─▒─▒─▒───▀████▀─────\n";
 					System.out.println(msg);
-					carga-= 7;
-					menu();
+					this.carga-= 7;
+					this.menu();
 					break;
 			}		
-		}else if(tampada == true){
+		}else if(this.tampada == true){
 			JOptionPane.showMessageDialog(null, "A Caneta esta Tampada!\n Por favor destampe a caneta!");
-			menu();
-		}else if(carga < 7) {
-			JOptionPane.showMessageDialog(null, "A Caneta esta com " +carga+ "% de Tinta!\n Voce precisa de 7% para escrever.");
-			menu();
+			this.menu();
+		}else if(this.carga < 7) {
+			JOptionPane.showMessageDialog(null, "A Caneta esta com " +this.carga+ "% de Tinta!\n Voce precisa de 7% para escrever.");
+			this.menu();
 		}
 	}
 	
 	void tampar() {
-		if(tampada == false) {
-			tampada = true;
+		if(this.tampada == false) {
+			this.tampada = true;
 			JOptionPane.showMessageDialog(null, "Sua Caneta Foi Tampada!");
-			menu();
+			this.menu();
 		}else {
 			JOptionPane.showMessageDialog(null, "A Caneta Ja esta Tampada!");
-			menu();
+			this.menu();
 		}
 	}
 	
 	void destampar() {
-		if(tampada == true) {
-			tampada = false;
+		if(this.tampada == true) {
+			this.tampada = false;
 			JOptionPane.showMessageDialog(null, "Sua Caneta Foi Destampada!");
-			menu();
+			this.menu();
 		}else {
 			JOptionPane.showMessageDialog(null, "A Caneta Ja esta Destampada!");
-			menu();
+			this.menu();
 		}
 	}
 	void menu() {
@@ -127,7 +127,7 @@ public class Caneta {
 		String txt = "";
 		String status = "";
 		
-		if(tampada == true) {
+		if(this.tampada == true) {
 			status = "Caneta Tampada";
 		}else {
 			status = "Caneta Destampada";
@@ -140,7 +140,7 @@ public class Caneta {
 		txt+= "3- Tampar \n";
 		txt+= "4- Destampar\n";
 		txt+= "0- Sair\n";
-		txt+= "\n\nTinta: " + carga + "%";
+		txt+= "\n\nTinta: " + this.carga + "%";
 		txt+= "\nStatus: " + status; 
 		op = Integer.parseInt(JOptionPane.showInputDialog(txt));
 		while(op < 0 || op > 4) {
@@ -148,7 +148,12 @@ public class Caneta {
 		}
 		switch(op) {
 			case 0:
-				JOptionPane.showMessageDialog(null, "Muito Obrigado! :)\n Bye Bye!");
+				if(this.tampada == false) {
+					JOptionPane.showMessageDialog(null, "Tampe a caneta antes de sair!");
+					this.menu();
+				}else {
+					JOptionPane.showMessageDialog(null, "Muito Obrigado! :)\n Bye Bye!");
+				}
 			break;	
 			case 1:
 				escrever();
