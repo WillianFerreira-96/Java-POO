@@ -52,7 +52,7 @@ public class Caderno {
   			numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
   		}
   		
-  		String txtTest = "\n" + JOptionPane.showInputDialog("Edite o texto:", linhas[numlinha - 1]);
+  		String txtTest = "\n" + JOptionPane.showInputDialog("Edite o texto:", this.linhas[numlinha - 1]);
   		this.linhas[numlinha - 1] = limitaString(txtTest, 40);
   		
   		this.gerarPg();
@@ -89,8 +89,8 @@ public class Caderno {
   			escolha = Integer.parseInt(JOptionPane.showInputDialog("Escolha invalida\nDigite novamente:\n\n1- SIM\n2- NAO"));
   		}
   		if(escolha == 1) {
-  			pgBranco();
-  	  		gerarPg();  	  		
+  			this.pgBranco();
+  			this.gerarPg();  	  		
   		}
   		this.menu();
   	}
@@ -99,8 +99,8 @@ public class Caderno {
   		int escolha;
   		String txtMenu;
   		if(this.contMenu == 0 ) {
-  			pgBranco();
-  			gerarPg();
+  			this.pgBranco();
+  			this.gerarPg();
   			this.contMenu++;
   		}
   		
