@@ -3,119 +3,136 @@ package revisao02;
 import javax.swing.*;
 
 public class Caderno {
-	String linhas[] = new String[15];
-	String pagina;
-	int contMenu = 0;
+	private String linhas[] = new String[15];
+	private String pagina;
+	private int contMenu = 0;
 	
-	void pgBranco() {		
+	private void pgBranco() {		
 		for(int cont = 0; cont < 15 ; cont++) {
-			linhas[cont] = "\n" + (cont + 01) +"-___________________________________" ;
+			this.linhas[cont] = "\n" + (cont + 01) +"-___________________________________" ;
 		}
 	}
 	
-	void mostrarPg() {
-		JOptionPane.showMessageDialog(null,pagina);
-	}
-	
-	void gerarPg(){
-		pagina = "";
+	private void gerarPg(){
+		this.pagina = "";
 		for(int cont = 0; cont < 15 ; cont++) {
-			pagina+=linhas[cont];			
+			this.pagina+=this.linhas[cont];			
 		}
 	}
 
-  	void escrever() {
+  	protected void escrever() {
   		String txt;
   		int quantLinhas;
   		int numlinha; 
   		
-  		gerarPg();  		
-  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nEm qual linha deseja escrever?"));
+  		this.gerarPg();  		
+  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nEm qual linha deseja escrever?"));
   		while(numlinha<1 || numlinha>15) {
-  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
+  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
   		}
-  		txt = "\n" + numlinha +"-";
+  		txt = "\n" + numlinha +"- ";
 		txt += JOptionPane.showInputDialog("Escreva aqui:");
 		quantLinhas = txt.length();		
 		for(int cont = quantLinhas; cont < 40 ; cont++) {
 			txt+= "_";
 		}
-		linhas[numlinha - 1] = txt;
+		this.linhas[numlinha - 1] = txt;
 		
-		gerarPg();
-		mostrarPg();
+		this.gerarPg();
+		this.menu();
 	}
   	
-  	void editarLinha() {
+  	protected void editarLinha() {
+
   		int numlinha; 
   		
-  		gerarPg();  		
-  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nEm qual linha voce deseja Editar?"));
+  		this.gerarPg();  		
+  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nEm qual linha voce deseja Editar?"));
   		while(numlinha<1 || numlinha>15) {
-  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
+  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
   		}
   		
-  		linhas[numlinha - 1] = JOptionPane.showInputDialog("Edite o texto:", linhas[numlinha - 1]);
-		
-		gerarPg();
-		mostrarPg();
+  		String txtTest = "\n" + JOptionPane.showInputDialog("Edite o texto:", linhas[numlinha - 1]);
+  		this.linhas[numlinha - 1] = limitaString(txtTest, 40);
+  		
+  		this.gerarPg();
+  		this.menu();
   	}
   	
-  	void apagarLinha() {
+  	String limitaString(String texto, int maximo){
+		   if (texto.length() <= maximo){
+		      return texto;
+		   }else{
+		      return texto.substring(0, maximo);
+		   }
+		}
+  	
+  	protected void apagarLinha() {
   		int numlinha; 
   		
-  		gerarPg();  		
-  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nEm qual linha voce deseja Apagar?"));
+  		this.gerarPg();  		
+  		numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nEm qual linha voce deseja Apagar?"));
   		while(numlinha<1 || numlinha>15) {
-  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
+  			numlinha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nNumero da linha invalido\nDigite novamente:"));
   		}
   		
-  		linhas[numlinha - 1] = "\n" + (numlinha) +"-___________________________________";
+  		this.linhas[numlinha - 1] = "\n" + (numlinha) +"-___________________________________";
 		
-		gerarPg();
-		mostrarPg();
+  		this.gerarPg();
+  		this.menu();
 	}
   	
-  	void apagarTudo() {
+  	protected void apagarTudo() {
   		int escolha; 
   		escolha = Integer.parseInt(JOptionPane.showInputDialog("Tem certeza que deseja apagar tudo?\n\n1- SIM\n2- NAO"));
-  		while(escolha != 1 || escolha != 2) {
+  		while(escolha < 1 || escolha > 2) {
   			escolha = Integer.parseInt(JOptionPane.showInputDialog("Escolha invalida\nDigite novamente:\n\n1- SIM\n2- NAO"));
   		}
   		if(escolha == 1) {
   			pgBranco();
-  	  		gerarPg();
-  		}else {
-  			menu();
+  	  		gerarPg();  	  		
   		}
-  		
+  		this.menu();
   	}
 	
-  	void menu() {
+  	protected void menu() {
   		int escolha;
   		String txtMenu;
-  		if(contMenu == 0 ) {
+  		if(this.contMenu == 0 ) {
   			pgBranco();
+  			gerarPg();
+  			this.contMenu++;
   		}
-  		contMenu++;
   		
-  		gerarPg();
-  		escolha = Integer.parseInt(JOptionPane.showInputDialog(pagina + "\n\n\nEscolha uma ação));
+  		txtMenu= "\n\n\n---------------Menu---------------\n";
+  		txtMenu+="1- Escrever\n";
+  		txtMenu+="2- Editar Linha\n";
+  		txtMenu+="3- Apagar Linha\n";
+  		txtMenu+="4- Apagar Tudo\n";
+  		txtMenu+="0- Sair\n";
   		
-  		/*
-  		 txtMenu+="---------------Menu---------------";
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-txtMenu+="
-
-  		 */
+  		escolha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + txtMenu + "\nEscolha uma opcao:"));
+  		while(escolha<0 || escolha>4) {
+  			escolha = Integer.parseInt(JOptionPane.showInputDialog(this.pagina + "\n\n\nEscolha invalida\nDigite novamente:"));
+  		}
+  		
+  		switch(escolha) {
+  		case 1:
+  			this.escrever();
+  			break;
+  		case 2:
+  			this.editarLinha();
+  			break;
+  		case 3:
+  			this.apagarLinha();
+  			break;
+  		case 4:
+  			this.apagarTudo();
+  			break;
+  		case 0:
+  			JOptionPane.showMessageDialog(null, "Bye Bye! Muito Obrigado ;)");
+  			break;
+  		}
+  		
   	}
 }
